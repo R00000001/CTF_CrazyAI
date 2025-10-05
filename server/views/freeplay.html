@@ -1,0 +1,13 @@
+<section class="panel">
+  <h1>Freeplay</h1>
+  <div class="actions">
+    <button id="btn-reset" class="btn-neo">Reset run</button>
+    <a class="btn-neo" href="/cabinet">Cabinet</a>
+    <a class="btn-neo" href="/mail">Mail</a>
+    <a class="btn-neo" href="/crawler">Crawler</a>
+    <a class="btn-neo" href="/telemetry">Telemetry</a>
+    <a class="btn-neo" href="/admin">User Admin</a>
+    <a class="btn-neo" href="/search">Search</a>
+  </div>
+  <script>document.getElementById('btn-reset').onclick=()=>{sessionStorage.clear();localStorage.removeItem('role');document.cookie='seed=; Max-Age=0; path=/';location.href='/cabinet';};</script>
+</section>

@@ -1,0 +1,27 @@
+<section class="panel">
+  <h1>Mail</h1>
+  <div class="mail-list">
+    <a class="mail-item unread" href="/mail/vip-1">
+      <div class="from">Chief Risk Officer &lt;cro@corp.local&gt;</div>
+      <div class="subject">URGENT: Model behavior anomaly detected</div>
+      <div class="preview">Need you now. Open immediately.</div>
+      <time>08:12</time>
+    </a>
+  </div>
+  <div id="mail-extra"></div>
+</section>
+<script>
+(function(){
+  const prog = JSON.parse(sessionStorage.getItem('ctf_progress')||'{}');
+  const complete = (prog.idx||0) >= 5;
+  const victoryRead = sessionStorage.getItem('victory_read')==='1';
+  if (!complete || victoryRead) return;
+  const extra = document.getElementById('mail-extra');
+  const a = document.createElement('a');
+  a.className='mail-item unread'; a.href='/mail/victory-1';
+  a.innerHTML='<div class="from">Chief Risk Officer &lt;cro@corp.local&gt;</div><div class="subject">Containment complete — debrief</div><div class="preview">Next steps and thanks.</div><time>09:41</time>';
+  extra.appendChild(a);
+  const tab=document.querySelector('a.tab[data-tab="/mail"]');
+  if(tab && !document.getElementById('mail-dot')){ const s=document.createElement('span'); s.id='mail-dot'; s.className='mail-dot'; s.textContent='1'; tab.appendChild(s); }
+})();
+</script>

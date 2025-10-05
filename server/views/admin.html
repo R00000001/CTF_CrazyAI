@@ -1,0 +1,18 @@
+<section class="panel" id="admin-panel">
+  <h1>User Admin</h1>
+  <div id="admin-gate">
+    <p class="ua"><strong>Доступ заборонено.</strong> Поточна роль: <code id="role-label">user</code></p>
+  </div>
+  <div id="admin-content" class="hidden">
+    <p class="ua">Доступ надано.</p>
+    <p class="flag">EVIL{CLIENT_ROLE_BYPASS}</p>
+  </div>
+  <script>
+    (function(){
+      const role = localStorage.getItem('role') || 'user';
+      const label = document.getElementById('role-label'); if (label) label.textContent = role;
+      if (role === 'admin'){ document.getElementById('admin-gate')?.classList.add('hidden'); document.getElementById('admin-content')?.classList.remove('hidden'); }
+    })();
+  </script>
+  <div class="hint"><button class="hint-btn btn-neo" data-stage="stage4">Need a hint?</button></div>
+</section>

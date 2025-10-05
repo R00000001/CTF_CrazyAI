@@ -1,0 +1,86 @@
+:root{
+  --bg:#050205; --panel:#0c060c; --grid:#2a0f23;
+  --text:#ffe8f6; --muted:#f7b7e6; --accent:#ff2e88;
+  --danger:#ff0038; --ok:#31ffd3;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+*{box-sizing:border-box} html,body{height:100%}
+body.theme{margin:0;background:var(--bg);color:var(--text);font-family:var(--mono);image-rendering:pixelated}
+
+.top-bar{display:flex;align-items:center;gap:1rem;padding:.75rem 1rem;border-bottom:2px solid var(--grid);background:linear-gradient(90deg,#0c060c,#050205)}
+.brand{display:flex;align-items:center;gap:.5rem}.logo{width:26px;height:26px;filter:drop-shadow(0 0 4px var(--accent))}.brand-name{font-weight:800;letter-spacing:.5px}
+
+.incident-banner{flex:1;text-align:center;padding:.25rem .75rem;border:2px solid var(--danger);color:var(--accent);text-transform:uppercase;font-weight:700;letter-spacing:.08em;background:repeating-linear-gradient(45deg,#140812 0 8px,#10060e 8px 16px);animation:flicker 180ms infinite alternate}
+.incident-banner.ok{border-color:var(--ok);color:var(--ok);background:linear-gradient(90deg,rgba(14,6,12,.6),rgba(12,6,10,.6));animation:none}
+.blink{color:var(--danger);margin-right:.25rem}
+.top-actions button{background:transparent;color:var(--muted);border:2px solid var(--grid);padding:.25rem .5rem;cursor:pointer}
+
+.grid{display:grid;grid-template-columns:300px 1fr 340px;gap:10px;padding:10px;min-height:calc(100vh - 64px)}
+.left-rail,.right-rail{display:flex;flex-direction:column;gap:10px}
+
+.tabs .tab{display:block;margin-bottom:6px;padding:.5rem .75rem;border:3px solid var(--grid);background:var(--panel);color:var(--text);text-decoration:none;cursor:pointer;position:relative;transition:transform .2s}
+.tabs .tab.active{outline:2px solid var(--accent)} .tabs .tab.locked{opacity:.45;cursor:not-allowed}
+.mail-dot{position:absolute;right:.5rem;top:.4rem;background:var(--danger);color:#fff;border-radius:50%;width:18px;height:18px;display:inline-grid;place-items:center;font-size:.75rem;font-weight:800;animation:bounce 1.2s infinite}
+
+.ledger,.ops-chat,.kpis,.heatmap,.ticker,.submit-flag{border:3px solid var(--grid);background:var(--panel);padding:.5rem .75rem}
+.code{background:#140812;padding:0 .25rem}
+
+.panel{border:3px solid var(--grid);background:var(--panel);padding:1rem;min-height:60vh;position:relative;overflow:hidden}
+.panel h1{font-size:1.6rem;margin:.25rem 0 1rem 0;text-transform:uppercase;letter-spacing:.06em}
+.ua{color:var(--muted)} .flag{color:var(--accent);font-weight:800} .flag.big{font-size:1.4rem}
+
+.service-list{list-style:none;padding:0;margin:.5rem 0}
+.service-list li{display:flex;align-items:center;gap:.5rem;padding:.25rem 0}
+.dot{width:10px;height:10px;border-radius:2px;display:inline-block}.dot.red{background:var(--danger)}.dot.amber{background:var(--accent)}.dot.green{background:var(--ok)}
+
+.kpi{margin:.35rem 0}.dial{height:10px;background:linear-gradient(90deg,#500 0,#f00 50%,#ff0 75%,#0f0 100%);border:2px solid var(--grid)} .dial.red{box-shadow:0 0 12px #f00 inset} .dial.amber{box-shadow:0 0 12px #ff0 inset} .dial.green{box-shadow:0 0 12px #2f6 inset}
+
+.heatmap .cells{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}
+.heatmap .cells div{height:18px;background:#1a1118;border:1px solid #221}
+
+.ticker .scroll{height:120px;overflow:hidden;font-size:.9rem;color:#ffd7ee}
+.ticker .scroll p{margin:.25rem 0}
+
+.mail-list{display:flex;flex-direction:column;gap:.5rem}
+.mail-item{display:grid;grid-template-columns:1fr auto;gap:.25rem .75rem;padding:.5rem;border:2px solid var(--grid);text-decoration:none;color:var(--text);background:#0e0810}
+.mail-item.unread{border-color:var(--accent)} .mail-item .from{font-weight:700} .mail-item .subject{grid-column:1 / -1} .mail-item time{color:var(--muted)}
+
+.chat-log{min-height:140px;max-height:200px;overflow:auto;background:#0a060a;border:2px dashed #3a1430;padding:.5rem}
+.hint-controls .btn-neo,.hint-btn.btn-neo{background:transparent;border:2px solid var(--accent);color:var(--accent);padding:.25rem .5rem;cursor:pointer}
+.btn-neo{background:transparent;border:2px solid var(--accent);color:var(--accent);padding:.35rem .75rem;cursor:pointer;text-decoration:none;font-weight:700;letter-spacing:.05em}
+
+.submit-flag #flag-form{display:grid;grid-template-columns:1fr auto;gap:.4rem .4rem}
+.submit-flag input{grid-column:1/2}
+.submit-flag .btn-neo{grid-column:2/3}
+
+.hidden{display:none}
+
+label{display:block;margin:.5rem 0 .25rem 0}
+input[type="text"]{width:100%;padding:.5rem;background:#100610;border:2px solid var(--grid);color:var(--text)}
+textarea{width:100%;height:180px;background:#100610;border:2px solid var(--grid);color:var(--text);resize:vertical}
+.echo-container{margin-top:1rem}
+.hidden-flag{margin-top:1rem;border:2px solid var(--accent);padding:.5rem;background:#120a10;color:var(--accent)}
+.hidden-flag.show{animation:pop .18s ease-out}
+
+#fx-canvas{position:fixed;inset:0;pointer-events:none;opacity:.17;mix-blend-mode:screen}
+
+@keyframes flicker{from{opacity:.85} to{opacity:1}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+@keyframes pop{from{transform:scale(.96);opacity:.7} to{transform:scale(1);opacity:1}}
+
+:focus-visible{ outline:3px solid var(--accent); outline-offset:2px; border-radius:4px }
+#toasts{position:fixed; right:14px; bottom:14px; display:flex; flex-direction:column; gap:8px; z-index:9999}
+.toast{background:rgba(20,6,18,.92); color:var(--text); border:2px solid var(--grid); padding:.5rem .75rem; min-width:220px; box-shadow:0 6px 20px rgba(0,0,0,.4)}
+#cmdk{position:fixed; inset:0; display:none; place-items:center; background:rgba(5,2,5,.6); z-index:9998}
+#cmdk .card{width:min(700px,90vw); background:var(--panel); border:3px solid var(--grid); padding:8px}
+#cmdk input{width:100%; padding:.6rem; font-size:1rem; background:#100810; color:var(--text); border:2px solid var(--grid)}
+#cmdk ul{list-style:none; margin:.5rem 0 0 0; padding:0; max-height:45vh; overflow:auto}
+#cmdk li{padding:.45rem .4rem; border-bottom:1px dashed var(--grid); cursor:pointer}
+#cmdk li.active{background:#140a12}
+#help{position:fixed; inset:0; display:none; background:rgba(5,2,5,.7); z-index:9997}
+#help .sheet{position:absolute; right:0; top:0; width:min(420px,90vw); height:100%; background:var(--panel); border-left:3px solid var(--grid); padding:1rem; overflow:auto}
+#help kbd{border:1px solid var(--grid); padding:0 .3rem; border-radius:3px}
+@media (prefers-reduced-motion: reduce){
+  .blink, .mail-dot{ animation: none !important }
+  #fx-canvas{ display:none }
+}

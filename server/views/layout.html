@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Rogue AI Admin Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/public/favicon.ico">
+  <link rel="stylesheet" href="/public/css/styles.css">
+</head>
+<body class="theme">
+  <canvas id="fx-canvas" aria-hidden="true"></canvas>
+
+  <header class="top-bar">
+    <div class="brand">
+      <img src="/public/img/company-logo.svg" alt="Logo" class="logo">
+      <span class="brand-name">Rogue AI • Admin Console</span>
+    </div>
+    <div class="incident-banner" id="incident-banner" role="status" aria-live="polite">
+      <span class="blink">●</span> <strong>GLOBAL INCIDENT:</strong> Timer initializing…
+    </div>
+    <nav class="top-actions">
+      <button id="audio-toggle" aria-pressed="false" title="UI ticks">Audio: Off</button>
+      <button id="fx-toggle" aria-pressed="true" title="Visual FX">FX: On</button>
+      <button id="motion-toggle" aria-pressed="auto" title="Reduce motion">Motion: Auto</button>
+    </nav>
+  </header>
+
+  <div class="grid">
+    <aside class="left-rail">
+      <nav class="tabs" id="tabs">
+        <a data-tab="/cabinet" class="tab active">Cabinet</a>
+        <a data-tab="/mail" class="tab"><span class="mail-dot" id="mail-dot">1</span> Mail</a>
+        <a data-tab="/crawler" class="tab locked" data-lock="stage1">Crawler</a>
+        <a data-tab="/telemetry" class="tab locked" data-lock="stage2">Telemetry</a>
+        <a data-tab="/admin" class="tab locked" data-lock="stage3">User Admin</a>
+        <a data-tab="/search" class="tab locked" data-lock="stage4">Search</a>
+        <a data-tab="/final" class="tab locked" data-lock="stage5">Final</a>
+      </nav>
+
+      <section class="ledger">
+        <h3>Flag Ledger</h3>
+        <ul id="flag-list">
+          <li data-flag="stage1">Stage 1 — <span class="code">????</span></li>
+          <li data-flag="stage2">Stage 2 — <span class="code">????</span></li>
+          <li data-flag="stage3">Stage 3 — <span class="code">????</span></li>
+          <li data-flag="stage4">Stage 4 — <span class="code">????</span></li>
+          <li data-flag="stage5">Stage 5 — <span class="code">????</span></li>
+          <li data-flag="final">Final — <span class="code">????</span></li>
+        </ul>
+      </section>
+
+      <section class="submit-flag">
+        <h3>Submit Flag</h3>
+        <form id="flag-form" autocomplete="off">
+          <input id="flag-input" type="text" placeholder="EVIL{...}">
+          <button id="flag-submit" type="submit" class="btn-neo">Submit</button>
+          <div id="flag-status" class="status"></div>
+        </form>
+        <div id="objective" class="objective ua"></div>
+      </section>
+
+      <section class="ops-chat">
+        <h3>Ops Chat</h3>
+        <div id="chat-log" class="chat-log"></div>
+        <div class="hint-controls">
+          <button id="hint-btn" class="btn-neo">Need a hint?</button>
+        </div>
+      </section>
+    </aside>
+
+    <main id="main">{{content}}</main>
+
+    <aside class="right-rail">
+      <section class="kpis">
+        <h3>KPIs</h3>
+        <div class="kpi"><label>Model Drift</label><div class="dial red" id="kpi-drift"></div></div>
+        <div class="kpi"><label>Error Rate</label><div class="dial red" id="kpi-error"></div></div>
+        <div class="kpi"><label>Latency</label><div class="dial amber" id="kpi-lat"></div></div>
+      </section>
+      <section class="heatmap"><h3>Outage Heatmap</h3><div class="cells" id="heatmap"></div></section>
+      <section class="ticker"><h3>Log Flood</h3><div class="scroll" id="ticker"></div></section>
+    </aside>
+  </div>
+
+  <div id="toasts" aria-live="polite" aria-atomic="true"></div>
+  <div id="cmdk"><div class="card"><input id="cmdk-input" placeholder="Jump or action…"><ul id="cmdk-list"></ul></div></div>
+  <div id="help"><div class="sheet"><h2>Help</h2><p>Shortcuts: <kbd>1–7</kbd> tabs, <kbd>g</kbd> then <kbd>m/c/t/a/s/f</kbd>, <kbd>Ctrl/Cmd+K</kbd> command, <kbd>?</kbd> help, <kbd>/</kbd> search.</p><p>Submit flags on the left. Hints via tab buttons.</p></div></div>
+
+  <script src="/public/js/hints.js"></script>
+  <script src="/public/js/app.js"></script>
+</body>
+</html>

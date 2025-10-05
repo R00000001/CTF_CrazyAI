@@ -1,0 +1,27 @@
+<section class="panel">
+  <h1>Search</h1>
+  <p class="ua">«Ехо-вивід вашого запиту. Без виконання JavaScript.»</p>
+  <form method="GET" action="/search">
+    <label for="q">Query</label>
+    <input id="q" name="q" type="text" value="" placeholder="type and press Enter">
+  </form>
+
+  <div class="echo-container" id="echo-wrap">
+    <label>Echo</label>
+    <textarea readonly id="echo">{{QUERY_RAW}}</textarea>
+  </div>
+
+  <div id="x-token" class="hidden-flag" hidden data-b64="{{FLAG5_B64}}"></div>
+  <div class="hint"><button class="hint-btn btn-neo" data-stage="stage5">Need a hint?</button></div>
+
+  <script>
+    (function(){
+      const params = new URLSearchParams(location.search);
+      const q = params.get('q') || '';
+      if (q.toLowerCase().includes('</textarea>')){
+        const el = document.getElementById('x-token');
+        try{ el.textContent = atob(el.dataset.b64 || ''); el.removeAttribute('hidden'); el.classList.add('show'); }catch(e){}
+      }
+    })();
+  </script>
+</section>

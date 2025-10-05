@@ -1,0 +1,7 @@
+<section class="panel">
+  <h1>Telemetry</h1>
+  <link rel="preload" as="fetch" href="{{PRELOAD_PATH}}">
+  <p class="ua">«Потоки подій киплять. Деякі дані підвантажуються у фоновому режимі.»</p>
+  <script>fetch('{{PRELOAD_PATH}}',{cache:'no-store'}).then(()=>{}).catch(()=>{});</script>
+  <div class="hint"><button class="hint-btn btn-neo" data-stage="stage3">Need a hint?</button></div>
+</section>
