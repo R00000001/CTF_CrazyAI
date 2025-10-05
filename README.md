@@ -1,5 +1,7 @@
 # CTF (Web Based, no tools needed, Crazy AI)
 
+<img width="1900" height="914" alt="image" src="https://github.com/user-attachments/assets/dff4d335-c1b3-412a-9288-4adea8758a76" />
+
 ## Repo layout:
 ```
 docker-compose.yml
